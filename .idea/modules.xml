@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MobileLeanBack.iml" filepath="$PROJECT_DIR$/MobileLeanBack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MaterialLeanBack.iml" filepath="$PROJECT_DIR$/MaterialLeanBack.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
