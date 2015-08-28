@@ -1,12 +1,13 @@
 package com.github.florent37.materialleanback;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorListenerAdapter;
+import com.nineoldandroids.animation.AnimatorSet;
+import com.nineoldandroids.animation.ObjectAnimator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
         cardView.addView(viewHolder.itemView);
     }
 
-    public void enlarge(int translationX, boolean withAnimation) {
+    public void enlarge(boolean withAnimation) {
         if (!enlarged && settings.animateCards) {
 
             if(currentAnimator != null) {
@@ -55,7 +56,7 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
             animatorSet.setDuration(duration);
 
             List<Animator> animatorList = new ArrayList<>();
-            animatorList.add(ObjectAnimator.ofFloat(cardView,"scaleX",scaleEnlarged));
+            animatorList.add(ObjectAnimator.ofFloat(cardView, "scaleX", scaleEnlarged));
             animatorList.add(ObjectAnimator.ofFloat(cardView, "scaleY", scaleEnlarged));
 
             if(settings.overlapCards) {
@@ -77,7 +78,7 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    public void reduce(int translationX, boolean withAnimation) {
+    public void reduce(boolean withAnimation) {
         if (enlarged && settings.animateCards) {
             if(currentAnimator != null) {
                 currentAnimator.cancel();
@@ -113,20 +114,10 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void newPosition(int position) {
-
-        int translationX;
         if (position == 1)
-            translationX = 0;
-        else if (position > 0)
-            translationX = -100;
-        else //translation == 0
-            translationX = 100;
-
-
-        if (position == 1)
-            enlarge(translationX, true);
+            enlarge(true);
         else
-            reduce(translationX, true);
+            reduce(true);
     }
 
     public void onBind() {

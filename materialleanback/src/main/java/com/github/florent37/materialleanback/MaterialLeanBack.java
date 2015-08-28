@@ -11,6 +11,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nineoldandroids.view.ViewHelper;
+
 /**
  * Created by florentchampigny on 28/08/15.
  */
@@ -42,6 +44,9 @@ public class MaterialLeanBack extends FrameLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
+        if(isInEditMode())
+            return;
+
         addView(LayoutInflater.from(getContext()).inflate(R.layout.mlb_layout, this, false));
 
         imageBackground = (ImageView) findViewById(R.id.mlb_imageBackground);
@@ -51,7 +56,7 @@ public class MaterialLeanBack extends FrameLayout {
             imageBackground.setBackgroundDrawable(getContext().getResources().getDrawable(settings.backgroundId));
 
         if (settings.backgroundOverlay != null)
-            imageBackgroundOverlay.setAlpha(settings.backgroundOverlay);
+            ViewHelper.setAlpha(imageBackgroundOverlay,settings.backgroundOverlay);
         if (settings.backgroundOverlayColor != null)
             imageBackgroundOverlay.setBackgroundColor(settings.backgroundOverlayColor);
 

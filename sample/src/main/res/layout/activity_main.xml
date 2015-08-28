@@ -1,27 +1,31 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#DDD"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary" />
 
     <com.github.florent37.materialleanback.MaterialLeanBack
         android:id="@+id/materialLeanBack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        app:mlb_overlapCards="true"
         app:mlb_animateCards="true"
-        app:mlb_titleColor="@android:color/white"
         app:mlb_backgroundOverlay="0.6"
+        app:mlb_lineSpacing="30dp"
+        app:mlb_overlapCards="true"
+        app:mlb_paddingBottom="30dp"
         app:mlb_paddingLeft="30dp"
         app:mlb_paddingRight="30dp"
-        app:mlb_lineSpacing="30dp"
 
         app:mlb_paddingTop="40dp"
-        app:mlb_paddingBottom="30dp"
-        />
+        app:mlb_titleColor="@android:color/white" />
 
-</FrameLayout>
+</LinearLayout>
 
