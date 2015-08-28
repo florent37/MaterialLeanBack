@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
                 textView.setTypeface(null, Typeface.BOLD);
             }
         });
-        Picasso.with(getApplicationContext())
-                .load("http://www.journaldugeek.com/wp-content/blogs.dir/1/files/2015/01/game-of-thrones-saison-5-documentaire.jpg")
-                .fit().centerCrop()
-                .into(materialLeanBack.getImageBackground());
+        //Picasso.with(getApplicationContext())
+        //        .load("http://www.journaldugeek.com/wp-content/blogs.dir/1/files/2015/01/game-of-thrones-saison-5-documentaire.jpg")
+        //        .fit().centerCrop()
+        //        .into(materialLeanBack.getImageBackground());
 
         materialLeanBack.setAdapter(new MaterialLeanBack.Adapter<TestViewHolder>() {
             @Override
