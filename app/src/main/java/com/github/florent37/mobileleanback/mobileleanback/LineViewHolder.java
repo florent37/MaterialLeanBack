@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.github.florent37.mobileleanback.R;
 
+import java.util.Collections;
+
 /**
  * Created by florentchampigny on 28/08/15.
  */
@@ -18,16 +20,18 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
     protected final MobileLeanBackSettings settings;
     protected final RecyclerView recyclerView;
     protected final MobileLeanBack.Adapter adapter;
+    protected final MobileLeanBack.Customizer customizer;
 
     protected TextView title;
     protected boolean wrapped = false;
 
     protected int row;
 
-    public LineViewHolder(View itemView, final MobileLeanBack.Adapter adapter, MobileLeanBackSettings settings) {
+    public LineViewHolder(View itemView, final MobileLeanBack.Adapter adapter, final MobileLeanBackSettings settings, final MobileLeanBack.Customizer customizer) {
         super(itemView);
         this.adapter = adapter;
         this.settings = settings;
+        this.customizer = customizer;
 
         title = (TextView) itemView.findViewById(R.id.title);
 
@@ -54,6 +58,9 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
                 title.setTextColor(settings.titleColor);
             if (settings.titleSize != -1)
                 title.setTextSize(settings.titleSize);
+
+            if(this.customizer != null)
+                customizer.customizeTitle(title);
         }
 
         recyclerView.setAdapter(new RecyclerView.Adapter() {

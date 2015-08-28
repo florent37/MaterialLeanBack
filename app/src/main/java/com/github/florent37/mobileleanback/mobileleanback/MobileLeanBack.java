@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.github.florent37.mobileleanback.R;
 
@@ -18,6 +19,7 @@ public class MobileLeanBack extends FrameLayout {
 
     RecyclerView recyclerView;
     MobileLeanBack.Adapter adapter;
+    MobileLeanBack.Customizer customizer;
     MobileLeanBackSettings settings = new MobileLeanBackSettings();
 
     public MobileLeanBack(Context context) {
@@ -47,7 +49,7 @@ public class MobileLeanBack extends FrameLayout {
             @Override
             public LineViewHolder onCreateViewHolder(ViewGroup viewGroup, int type) {
                 View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_row, viewGroup, false);
-                return new LineViewHolder(view,adapter,settings);
+                return new LineViewHolder(view,adapter,settings,customizer);
             }
 
             @Override
@@ -88,5 +90,17 @@ public class MobileLeanBack extends FrameLayout {
             this.itemView = itemView;
         }
 
+    }
+
+    public interface Customizer{
+        void customizeTitle(TextView textView);
+    }
+
+    public Customizer getCustomizer() {
+        return customizer;
+    }
+
+    public void setCustomizer(Customizer customizer) {
+        this.customizer = customizer;
     }
 }
