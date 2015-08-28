@@ -17,6 +17,7 @@
         app:mlb_backgroundOverlay="0.6"
         app:mlb_paddingLeft="30dp"
         app:mlb_paddingRight="30dp"
+        app:mlb_lineSpacing="30dp"
         />
 
 </FrameLayout>

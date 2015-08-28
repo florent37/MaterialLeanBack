@@ -5,6 +5,8 @@
     android:id="@+id/row_layout"
     android:orientation="vertical"
     android:paddingTop="@dimen/mlb_lineSpacingTop"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     >
 
     <TextView
@@ -13,7 +15,7 @@
         android:layout_height="wrap_content"
         android:textColor="#333"
         android:text="Apps"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="10dp"
         />
@@ -22,6 +24,8 @@
         android:id="@+id/row_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="1000dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:layout_marginBottom="@dimen/mlb_lineSpacingBottom"/>
 
 </LinearLayout>

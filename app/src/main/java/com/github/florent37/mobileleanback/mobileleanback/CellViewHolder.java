@@ -19,6 +19,9 @@ import java.util.List;
  */
 public class CellViewHolder extends RecyclerView.ViewHolder {
 
+    final static float scaleEnlarged = 1.2f;
+    final static float scaleReduced = 1.0f;
+
     protected CardView cardView;
     protected boolean enlarged = false;
 
@@ -55,11 +58,11 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
             animatorSet.setDuration(duration);
 
             List<Animator> animatorList = new ArrayList<>();
-            animatorList.add(ObjectAnimator.ofFloat(cardView,"scaleX",1.0f));
-            animatorList.add(ObjectAnimator.ofFloat(cardView, "scaleY", 1.0f));
+            animatorList.add(ObjectAnimator.ofFloat(cardView,"scaleX",scaleEnlarged));
+            animatorList.add(ObjectAnimator.ofFloat(cardView, "scaleY", scaleEnlarged));
 
             if(settings.overlapCards) {
-                animatorList.add(ObjectAnimator.ofFloat(cardView, "translationX", translationX));
+                //animatorList.add(ObjectAnimator.ofFloat(cardView, "translationX", translationX));
                 animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationStart(Animator animation) {
@@ -90,11 +93,11 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
             animatorSet.setDuration(duration);
 
             List<Animator> animatorList = new ArrayList<>();
-            animatorList.add(ObjectAnimator.ofFloat(cardView,"scaleX",0.8f));
-            animatorList.add(ObjectAnimator.ofFloat(cardView,"scaleY",0.8f));
+            animatorList.add(ObjectAnimator.ofFloat(cardView,"scaleX",scaleReduced));
+            animatorList.add(ObjectAnimator.ofFloat(cardView,"scaleY",scaleReduced));
 
             if(settings.overlapCards) {
-                animatorList.add(ObjectAnimator.ofFloat(cardView, "translationX", translationX));
+                //animatorList.add(ObjectAnimator.ofFloat(cardView, "translationX", translationX));
                 animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationStart(Animator animation) {
@@ -119,7 +122,7 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
             translationX = 0;
         else if (position > 0)
             translationX = -100;
-        else
+        else //translation == 0
             translationX = 100;
 
 
