@@ -22,6 +22,7 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
     protected final MobileLeanBack.Adapter adapter;
     protected final MobileLeanBack.Customizer customizer;
 
+    protected ViewGroup layout;
     protected TextView title;
     protected boolean wrapped = false;
 
@@ -33,9 +34,10 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
         this.settings = settings;
         this.customizer = customizer;
 
-        title = (TextView) itemView.findViewById(R.id.title);
+        layout = (ViewGroup) itemView.findViewById(R.id.row_layout);
+        title = (TextView) itemView.findViewById(R.id.row_title);
 
-        recyclerView = (RecyclerView) itemView.findViewById(R.id.lineRecyclerView);
+        recyclerView = (RecyclerView) itemView.findViewById(R.id.row_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setHasFixedSize(true);
     }
@@ -54,7 +56,7 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
             else
                 title.setText(titleString);
 
-            if (settings.titleColor != -1)
+            if (settings.titleColor != null)
                 title.setTextColor(settings.titleColor);
             if (settings.titleSize != -1)
                 title.setTextSize(settings.titleSize);

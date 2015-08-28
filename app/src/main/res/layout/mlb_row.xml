@@ -2,10 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:id="@+id/row_layout"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:paddingBottom="30dp"
+    >
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/row_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#333"
@@ -16,7 +20,7 @@
         />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/lineRecyclerView"
+        android:id="@+id/row_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="1000dp" />
 

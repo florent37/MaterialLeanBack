@@ -12,6 +12,8 @@
         android:layout_height="match_parent"
         app:mlb_overlapCards="true"
         app:mlb_animateCards="true"
+        app:mlb_titleColor="@android:color/white"
+        app:mlb_backgroundOverlay="0.2"
         />
 
 </FrameLayout>

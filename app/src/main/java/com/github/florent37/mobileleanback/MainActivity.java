@@ -1,5 +1,6 @@
 package com.github.florent37.mobileleanback;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -21,6 +22,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mobileLeanBack = (MobileLeanBack) findViewById(R.id.mobileLeanBack);
+        mobileLeanBack.setCustomizer(new MobileLeanBack.Customizer() {
+            @Override
+            public void customizeTitle(TextView textView) {
+                textView.setTypeface(null, Typeface.BOLD);
+            }
+        });
+        Picasso.with(getApplicationContext())
+                .load("http://www.journaldugeek.com/wp-content/blogs.dir/1/files/2015/01/game-of-thrones-saison-5-documentaire.jpg")
+                .fit().centerCrop()
+                .into(mobileLeanBack.getImageBackground());
+
         mobileLeanBack.setAdapter(new MobileLeanBack.Adapter<TestViewHolder>() {
             @Override
             public int getLineCount() {
@@ -42,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onBindViewHolder(TestViewHolder viewHolder, int i) {
                 viewHolder.textView.setText("test " + i);
 
-                String url = "http://www.lorempixel.com/40"+viewHolder.row+"/40"+viewHolder.cell+"/";
+                String url = "http://www.lorempixel.com/40" + viewHolder.row + "/40" + viewHolder.cell + "/";
                 Picasso.with(viewHolder.imageView.getContext()).load(url).into(viewHolder.imageView);
             }
 

@@ -8,5 +8,10 @@
 
         <attr name="mlb_cardElevationEnlarged" format="integer"/>
         <attr name="mlb_cardElevationReduced" format="integer"/>
+
+        <attr name="mlb_background" format="reference"/>
+        <attr name="mlb_backgroundOverlay" format="float"/>
+        <attr name="mlb_backgroundOverlayColor" format="color"/>
+
     </declare-styleable>
 </resources>
