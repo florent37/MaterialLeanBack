@@ -22,6 +22,9 @@ public class MobileLeanBackSettings {
     public Float backgroundOverlay;
     public Integer backgroundOverlayColor;
 
+    public int paddingLeft;
+    public int paddingRight;
+
     protected void handleAttributes(Context context, AttributeSet attrs) {
         try {
             TypedArray styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.MobileLeanBack);
@@ -34,6 +37,11 @@ public class MobileLeanBackSettings {
                 overlapCards = styledAttrs.getBoolean(R.styleable.MobileLeanBack_mlb_overlapCards, true);
                 elevationEnlarged = styledAttrs.getInteger(R.styleable.MobileLeanBack_mlb_cardElevationEnlarged, 8);
                 elevationReduced = styledAttrs.getInteger(R.styleable.MobileLeanBack_mlb_cardElevationReduced, 5);
+
+                if(styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_paddingLeft))
+                    paddingLeft = styledAttrs.getDimensionPixelOffset(R.styleable.MobileLeanBack_mlb_paddingLeft, -1);
+                if(styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_paddingRight))
+                    paddingRight = styledAttrs.getDimensionPixelOffset(R.styleable.MobileLeanBack_mlb_paddingRight, -1);
 
                 if(styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_background))
                     backgroundId = styledAttrs.getResourceId(R.styleable.MobileLeanBack_mlb_background, -1);

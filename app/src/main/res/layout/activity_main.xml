@@ -13,7 +13,9 @@
         app:mlb_overlapCards="true"
         app:mlb_animateCards="true"
         app:mlb_titleColor="@android:color/white"
-        app:mlb_backgroundOverlay="0.2"
+        app:mlb_backgroundOverlay="0.6"
+        app:mlb_paddingLeft="30dp"
+        app:mlb_paddingRight="30dp"
         />
 
 </FrameLayout>

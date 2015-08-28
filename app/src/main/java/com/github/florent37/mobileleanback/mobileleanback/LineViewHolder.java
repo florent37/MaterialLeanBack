@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.github.florent37.mobileleanback.R;
 
-import java.util.Collections;
-
 /**
  * Created by florentchampigny on 28/08/15.
  */
@@ -61,7 +59,7 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
             if (settings.titleSize != -1)
                 title.setTextSize(settings.titleSize);
 
-            if(this.customizer != null)
+            if (this.customizer != null)
                 customizer.customizeTitle(title);
         }
 
@@ -69,12 +67,12 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
 
             @Override
             public int getItemViewType(int position) {
-                switch (position) {
-                    case 0:
-                        return 0;
-                    default:
-                        return 1;
-                }
+                if (position == 0)
+                    return 0;
+                else if (position == getItemCount() - 1)
+                    return 1;
+                else
+                    return 2;
             }
 
             @Override
@@ -83,12 +81,24 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
                 switch (type) {
                     case 0:
                         view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
+                        if (settings.paddingLeft != -1) {
+                            view.getLayoutParams().width = settings.paddingLeft;
+                            view.requestLayout();
+                        }
+                        return new RecyclerView.ViewHolder(view) {
+                        };
+                    case 1:
+                        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
+                        if (settings.paddingLeft != -1) {
+                            view.getLayoutParams().width = settings.paddingRight;
+                            view.requestLayout();
+                        }
                         return new RecyclerView.ViewHolder(view) {
                         };
                     default:
                         view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_cell, viewGroup, false);
 
-                        if(!wrapped) {
+                        if (!wrapped) {
                             //simulate wrap_content
                             view.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
                                 @Override
