@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MobileLeanBack">
+        <attr name="mlb_titleColor" format="color"/>
+        <attr name="mlb_titleSize" format="dimension"/>
+        <attr name="mlb_overlapCards" format="boolean"/>
+        <attr name="mlb_animateCards" format="boolean"/>
+
+        <attr name="mlb_cardElevationEnlarged" format="integer"/>
+        <attr name="mlb_cardElevationReduced" format="integer"/>
+    </declare-styleable>
+</resources>
