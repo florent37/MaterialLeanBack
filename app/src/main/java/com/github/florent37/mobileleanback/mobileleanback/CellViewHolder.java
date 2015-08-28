@@ -27,6 +27,8 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
     protected final MobileLeanBackSettings settings;
     protected final int row;
 
+    Animator currentAnimator;
+
     public CellViewHolder(View itemView, int row, MobileLeanBack.Adapter adapter, MobileLeanBackSettings settings) {
         super(itemView);
         this.row = row;
@@ -41,6 +43,12 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
 
     public void enlarge(int translationX, boolean withAnimation) {
         if (!enlarged && settings.animateCards) {
+
+            if(currentAnimator != null) {
+                currentAnimator.cancel();
+                currentAnimator = null;
+            }
+
             int duration = withAnimation? 300 : 0;
 
             AnimatorSet animatorSet = new AnimatorSet();
@@ -48,7 +56,7 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
 
             List<Animator> animatorList = new ArrayList<>();
             animatorList.add(ObjectAnimator.ofFloat(cardView,"scaleX",1.0f));
-            animatorList.add(ObjectAnimator.ofFloat(cardView,"scaleY",1.0f));
+            animatorList.add(ObjectAnimator.ofFloat(cardView, "scaleY", 1.0f));
 
             if(settings.overlapCards) {
                 animatorList.add(ObjectAnimator.ofFloat(cardView, "translationX", translationX));
@@ -56,11 +64,13 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
                     @Override
                     public void onAnimationStart(Animator animation) {
                         cardView.setCardElevation(settings.elevationEnlarged);
+                        currentAnimator = null;
                     }
                 });
             }
 
             animatorSet.playTogether(animatorList);
+            currentAnimator = animatorSet;
             animatorSet.start();
 
             enlarged = true;
@@ -69,6 +79,11 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
 
     public void reduce(int translationX, boolean withAnimation) {
         if (enlarged && settings.animateCards) {
+            if(currentAnimator != null) {
+                currentAnimator.cancel();
+                currentAnimator = null;
+            }
+
             int duration = withAnimation? 300 : 0;
 
             AnimatorSet animatorSet = new AnimatorSet();
@@ -84,11 +99,13 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
                     @Override
                     public void onAnimationStart(Animator animation) {
                         cardView.setCardElevation(settings.elevationReduced);
+                        currentAnimator = null;
                     }
                 });
             }
 
             animatorSet.playTogether(animatorList);
+            currentAnimator = animatorSet;
             animatorSet.start();
 
             enlarged = false;

@@ -63,13 +63,13 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
                 customizer.customizeTitle(title);
         }
         {
-            if(settings.lineSpacing != null){
+            if (settings.lineSpacing != null) {
                 layout.setPadding(
                         layout.getPaddingLeft(),
                         layout.getPaddingTop(),
                         layout.getPaddingRight(),
                         settings.lineSpacing
-                        );
+                );
             }
         }
 
@@ -91,20 +91,10 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
                 switch (type) {
                     case 0:
                         view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
-                        if (settings.paddingLeft != -1) {
-                            view.getLayoutParams().width = settings.paddingLeft;
-                            view.requestLayout();
-                        }
-                        return new RecyclerView.ViewHolder(view) {
-                        };
+                        return new PlaceHolderViewHolder(view, settings.paddingLeft);
                     case 1:
                         view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
-                        if (settings.paddingLeft != -1) {
-                            view.getLayoutParams().width = settings.paddingRight;
-                            view.requestLayout();
-                        }
-                        return new RecyclerView.ViewHolder(view) {
-                        };
+                        return new PlaceHolderViewHolder(view, settings.paddingRight);
                     default:
                         view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_cell, viewGroup, false);
 
