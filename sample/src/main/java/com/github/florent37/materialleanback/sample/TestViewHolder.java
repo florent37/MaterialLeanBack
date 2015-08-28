@@ -1,4 +1,4 @@
-package com.github.florent37.mobileleanback;
+package com.github.florent37.materialleanback.sample;
 
 import android.view.View;
 import android.widget.ImageView;

@@ -1,4 +1,4 @@
-package com.github.florent37.mobileleanback;
+package com.github.florent37.materialleanback.sample;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -6,11 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.github.florent37.materialleanback.MaterialLeanBack;
 import com.squareup.picasso.Picasso;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         materialLeanBack = (MaterialLeanBack) findViewById(R.id.materialLeanBack);
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public String getTitleForRow(int row) {
-                return "Line "+row;
+                return "Line " + row;
             }
 
         });
