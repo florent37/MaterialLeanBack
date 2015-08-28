@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MaterialLeanBack">
+        <attr name="mlb_titleColor" format="color"/>
+        <attr name="mlb_titleSize" format="dimension"/>
+        <attr name="mlb_overlapCards" format="boolean"/>
+        <attr name="mlb_animateCards" format="boolean"/>
+
+        <attr name="mlb_cardElevationEnlarged" format="integer"/>
+        <attr name="mlb_cardElevationReduced" format="integer"/>
+
+        <attr name="mlb_lineSpacing" format="dimension"/>
+
+        <attr name="mlb_paddingTop" format="dimension"/>
+        <attr name="mlb_paddingBottom" format="dimension"/>
+        <attr name="mlb_paddingLeft" format="dimension"/>
+        <attr name="mlb_paddingRight" format="dimension"/>
+
+        <attr name="mlb_background" format="reference"/>
+        <attr name="mlb_backgroundOverlay" format="float"/>
+        <attr name="mlb_backgroundOverlayColor" format="color"/>
+
+    </declare-styleable>
+</resources>
