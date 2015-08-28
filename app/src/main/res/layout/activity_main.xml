@@ -18,6 +18,9 @@
         app:mlb_paddingLeft="30dp"
         app:mlb_paddingRight="30dp"
         app:mlb_lineSpacing="30dp"
+
+        app:mlb_paddingTop="40dp"
+        app:mlb_paddingBottom="30dp"
         />
 
 </FrameLayout>

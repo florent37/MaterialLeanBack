@@ -91,10 +91,10 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
                 switch (type) {
                     case 0:
                         view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
-                        return new PlaceHolderViewHolder(view, settings.paddingLeft);
+                        return new PlaceHolderViewHolder(view, true, settings.paddingLeft);
                     case 1:
                         view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
-                        return new PlaceHolderViewHolder(view, settings.paddingRight);
+                        return new PlaceHolderViewHolder(view, true, settings.paddingRight);
                     default:
                         view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_cell, viewGroup, false);
 

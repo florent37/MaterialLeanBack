@@ -37,7 +37,7 @@ public class MobileLeanBack extends FrameLayout {
 
     public MobileLeanBack(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        settings.handleAttributes(context,attrs);
+        settings.handleAttributes(context, attrs);
     }
 
     @Override
@@ -49,27 +49,48 @@ public class MobileLeanBack extends FrameLayout {
         imageBackground = (ImageView) findViewById(R.id.mlb_imageBackground);
         imageBackgroundOverlay = findViewById(R.id.mlb_imageBackgroundOverlay);
 
-        if(settings.backgroundId != null)
+        if (settings.backgroundId != null)
             imageBackground.setBackgroundDrawable(getContext().getResources().getDrawable(settings.backgroundId));
 
-        if(settings.backgroundOverlay != null)
+        if (settings.backgroundOverlay != null)
             imageBackgroundOverlay.setAlpha(settings.backgroundOverlay);
-        if(settings.backgroundOverlayColor != null)
+        if (settings.backgroundOverlayColor != null)
             imageBackgroundOverlay.setBackgroundColor(settings.backgroundOverlayColor);
 
         recyclerView = (RecyclerView) findViewById(R.id.mlb_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new RecyclerView.Adapter<LineViewHolder>() {
+        recyclerView.setAdapter(new RecyclerView.Adapter() {
 
             @Override
-            public LineViewHolder onCreateViewHolder(ViewGroup viewGroup, int type) {
-                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_row, viewGroup, false);
-                return new LineViewHolder(view, adapter, settings, customizer);
+            public int getItemViewType(int position) {
+                if (position == 0)
+                    return 0;
+                else if (position == getItemCount() - 1)
+                    return 1;
+                else
+                    return 2;
             }
 
             @Override
-            public void onBindViewHolder(LineViewHolder viewHolder, int row) {
-                viewHolder.onBind(row);
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int type) {
+                View view;
+                switch (type) {
+                    case 0:
+                        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
+                        return new PlaceHolderViewHolder(view, false, settings.paddingTop);
+                    case 1:
+                        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
+                        return new PlaceHolderViewHolder(view, false, settings.paddingBottom);
+                    default:
+                        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_row, viewGroup, false);
+                        return new LineViewHolder(view, adapter, settings, customizer);
+                }
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int row) {
+                if(viewHolder instanceof LineViewHolder)
+                    ((LineViewHolder)viewHolder).onBind(row);
             }
 
             @Override
@@ -79,11 +100,15 @@ public class MobileLeanBack extends FrameLayout {
         });
     }
 
-    public interface Adapter<VH extends MobileLeanBack.ViewHolder>{
+    public interface Adapter<VH extends MobileLeanBack.ViewHolder> {
         int getLineCount();
+
         int getCellsCount(int row);
-        VH  onCreateViewHolder(ViewGroup viewGroup, int row);
+
+        VH onCreateViewHolder(ViewGroup viewGroup, int row);
+
         void onBindViewHolder(VH viewHolder, int i);
+
         String getTitleForRow(int row);
     }
 
@@ -101,13 +126,13 @@ public class MobileLeanBack extends FrameLayout {
         public int cell;
         public View itemView;
 
-        public ViewHolder(View itemView){
+        public ViewHolder(View itemView) {
             this.itemView = itemView;
         }
 
     }
 
-    public interface Customizer{
+    public interface Customizer {
         void customizeTitle(TextView textView);
     }
 

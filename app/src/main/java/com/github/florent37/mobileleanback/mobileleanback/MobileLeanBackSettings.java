@@ -22,8 +22,10 @@ public class MobileLeanBackSettings {
     public Float backgroundOverlay;
     public Integer backgroundOverlayColor;
 
-    public int paddingLeft;
-    public int paddingRight;
+    public Integer paddingTop;
+    public Integer paddingBottom;
+    public Integer paddingLeft;
+    public Integer paddingRight;
 
     public Integer lineSpacing;
 
@@ -40,19 +42,27 @@ public class MobileLeanBackSettings {
                 elevationEnlarged = styledAttrs.getInteger(R.styleable.MobileLeanBack_mlb_cardElevationEnlarged, 8);
                 elevationReduced = styledAttrs.getInteger(R.styleable.MobileLeanBack_mlb_cardElevationReduced, 5);
 
-                if(styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_paddingLeft))
-                    paddingLeft = styledAttrs.getDimensionPixelOffset(R.styleable.MobileLeanBack_mlb_paddingLeft, -1);
-                if(styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_paddingRight))
-                    paddingRight = styledAttrs.getDimensionPixelOffset(R.styleable.MobileLeanBack_mlb_paddingRight, -1);
+                {
+                    if (styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_paddingTop))
+                        paddingTop = styledAttrs.getDimensionPixelOffset(R.styleable.MobileLeanBack_mlb_paddingTop, -1);
+                    if (styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_paddingBottom))
+                        paddingBottom = styledAttrs.getDimensionPixelOffset(R.styleable.MobileLeanBack_mlb_paddingBottom, -1);
+                    if (styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_paddingLeft))
+                        paddingLeft = styledAttrs.getDimensionPixelOffset(R.styleable.MobileLeanBack_mlb_paddingLeft, -1);
+                    if (styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_paddingRight))
+                        paddingRight = styledAttrs.getDimensionPixelOffset(R.styleable.MobileLeanBack_mlb_paddingRight, -1);
+                }
 
-                if(styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_background))
-                    backgroundId = styledAttrs.getResourceId(R.styleable.MobileLeanBack_mlb_background, -1);
+                {
+                    if (styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_background))
+                        backgroundId = styledAttrs.getResourceId(R.styleable.MobileLeanBack_mlb_background, -1);
 
-                if(styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_backgroundOverlay))
-                    backgroundOverlay = styledAttrs.getFloat(R.styleable.MobileLeanBack_mlb_backgroundOverlay, -1);
+                    if (styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_backgroundOverlay))
+                        backgroundOverlay = styledAttrs.getFloat(R.styleable.MobileLeanBack_mlb_backgroundOverlay, -1);
 
-                if(styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_backgroundOverlayColor))
-                    backgroundOverlayColor = styledAttrs.getColor(R.styleable.MobileLeanBack_mlb_backgroundOverlayColor, -1);
+                    if (styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_backgroundOverlayColor))
+                        backgroundOverlayColor = styledAttrs.getColor(R.styleable.MobileLeanBack_mlb_backgroundOverlayColor, -1);
+                }
 
                 if(styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_lineSpacing))
                     lineSpacing = styledAttrs.getDimensionPixelOffset(R.styleable.MobileLeanBack_mlb_lineSpacing, -1);
