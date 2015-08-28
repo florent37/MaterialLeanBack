@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mobileLeanBack = (MobileLeanBack) findViewById(R.id.mobileLeanBack);
+
         mobileLeanBack.setCustomizer(new MobileLeanBack.Customizer() {
             @Override
             public void customizeTitle(TextView textView) {
@@ -64,17 +65,5 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-    }
-
-    public class TestViewHolder extends MobileLeanBack.ViewHolder {
-
-        protected TextView textView;
-        protected ImageView imageView;
-
-        public TestViewHolder(View itemView) {
-            super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.textView);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
-        }
     }
 }

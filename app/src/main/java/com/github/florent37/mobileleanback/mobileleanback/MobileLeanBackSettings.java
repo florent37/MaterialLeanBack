@@ -25,6 +25,8 @@ public class MobileLeanBackSettings {
     public int paddingLeft;
     public int paddingRight;
 
+    public Integer lineSpacing;
+
     protected void handleAttributes(Context context, AttributeSet attrs) {
         try {
             TypedArray styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.MobileLeanBack);
@@ -51,6 +53,9 @@ public class MobileLeanBackSettings {
 
                 if(styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_backgroundOverlayColor))
                     backgroundOverlayColor = styledAttrs.getColor(R.styleable.MobileLeanBack_mlb_backgroundOverlayColor, -1);
+
+                if(styledAttrs.hasValue(R.styleable.MobileLeanBack_mlb_lineSpacing))
+                    lineSpacing = styledAttrs.getDimensionPixelOffset(R.styleable.MobileLeanBack_mlb_lineSpacing, -1);
             }
 
             styledAttrs.recycle();

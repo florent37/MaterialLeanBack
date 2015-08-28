@@ -9,6 +9,8 @@
         <attr name="mlb_cardElevationEnlarged" format="integer"/>
         <attr name="mlb_cardElevationReduced" format="integer"/>
 
+        <attr name="mlb_lineSpacing" format="dimension"/>
+
         <attr name="mlb_paddingLeft" format="dimension"/>
         <attr name="mlb_paddingRight" format="dimension"/>
 

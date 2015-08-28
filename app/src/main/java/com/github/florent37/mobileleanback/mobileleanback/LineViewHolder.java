@@ -62,6 +62,16 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
             if (this.customizer != null)
                 customizer.customizeTitle(title);
         }
+        {
+            if(settings.lineSpacing != null){
+                layout.setPadding(
+                        layout.getPaddingLeft(),
+                        layout.getPaddingTop(),
+                        layout.getPaddingRight(),
+                        settings.lineSpacing
+                        );
+            }
+        }
 
         recyclerView.setAdapter(new RecyclerView.Adapter() {
 

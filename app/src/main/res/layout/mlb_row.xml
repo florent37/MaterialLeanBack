@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/row_layout"
     android:orientation="vertical"
-    android:paddingTop="10dp"
-    android:paddingBottom="30dp"
+    android:paddingTop="@dimen/mlb_lineSpacingTop"
     >
 
     <TextView
@@ -22,6 +21,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/row_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="1000dp" />
+        android:layout_height="1000dp"
+        android:layout_marginBottom="@dimen/mlb_lineSpacingBottom"/>
 
 </LinearLayout>
