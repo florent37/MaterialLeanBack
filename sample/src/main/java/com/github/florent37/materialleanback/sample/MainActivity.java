@@ -3,6 +3,7 @@ package com.github.florent37.materialleanback.sample;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.crashlytics.android.Crashlytics;
 import com.github.florent37.materialleanback.MaterialLeanBack;
 import com.squareup.picasso.Picasso;
+
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
@@ -73,6 +75,26 @@ public class MainActivity extends AppCompatActivity {
                 return "Line " + row;
             }
 
+
+            @Override
+            public RecyclerView.ViewHolder getCustomViewForRow(ViewGroup viewgroup, int row) {
+                if (row == 0) {
+                    View view = LayoutInflater.from(viewgroup.getContext()).inflate(R.layout.header, viewgroup, false);
+                    return new RecyclerView.ViewHolder(view) {
+                    };
+                } else
+                    return null;
+            }
+
+            @Override
+            public boolean isCustomView(int row) {
+                return row == 0;
+            }
+
+            @Override
+            public void onBindCustomView(RecyclerView.ViewHolder viewHolder, int row) {
+                super.onBindCustomView(viewHolder, row);
+            }
         });
     }
 }

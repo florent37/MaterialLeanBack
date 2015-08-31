@@ -1,5 +1,6 @@
-package com.github.florent37.materialleanback;
+package com.github.florent37.materialleanback.line;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
+
+import com.github.florent37.materialleanback.cell.CellAdapter;
+import com.github.florent37.materialleanback.cell.CellViewHolder;
+import com.github.florent37.materialleanback.MaterialLeanBack;
+import com.github.florent37.materialleanback.MaterialLeanBackSettings;
+import com.github.florent37.materialleanback.PlaceHolderViewHolder;
+import com.github.florent37.materialleanback.R;
 
 /**
  * Created by florentchampigny on 28/08/15.
@@ -20,11 +28,11 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
 
     protected ViewGroup layout;
     protected TextView title;
-    protected boolean wrapped = false;
 
     protected int row;
+    protected boolean wrapped = false;
 
-    public LineViewHolder(View itemView, final MaterialLeanBack.Adapter adapter, final MaterialLeanBackSettings settings, final MaterialLeanBack.Customizer customizer) {
+    public LineViewHolder(View itemView, @NonNull MaterialLeanBack.Adapter adapter, @NonNull MaterialLeanBackSettings settings, final MaterialLeanBack.Customizer customizer) {
         super(itemView);
         this.adapter = adapter;
         this.settings = settings;
@@ -71,68 +79,16 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
             }
         }
 
-        recyclerView.setAdapter(new RecyclerView.Adapter() {
-
+        recyclerView.setAdapter(new CellAdapter(row, adapter, settings, new CellAdapter.HeightCalculatedCallback() {
             @Override
-            public int getItemViewType(int position) {
-                if (position == 0)
-                    return 0;
-                else if (position == getItemCount() - 1)
-                    return 1;
-                else
-                    return 2;
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int type) {
-                final View view;
-                switch (type) {
-                    case 0:
-                        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
-                        return new PlaceHolderViewHolder(view, true, settings.paddingLeft);
-                    case 1:
-                        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
-                        return new PlaceHolderViewHolder(view, true, settings.paddingRight);
-                    default:
-                        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_cell, viewGroup, false);
-
-                        if (!wrapped) {
-                            //simulate wrap_content
-                            view.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-                                @Override
-                                public boolean onPreDraw() {
-                                    recyclerView.getLayoutParams().height = view.getHeight();
-                                    recyclerView.requestLayout();
-                                    view.getViewTreeObserver().removeOnPreDrawListener(this);
-                                    wrapped = true;
-                                    return false;
-                                }
-                            });
-                        }
-
-                        return new CellViewHolder(view, LineViewHolder.this.row, adapter, settings);
+            public void onHeightCalculated(int height) {
+                if(!wrapped) {
+                    recyclerView.getLayoutParams().height = height;
+                    recyclerView.requestLayout();
+                    wrapped = true;
                 }
             }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-                if (viewHolder instanceof CellViewHolder) {
-                    CellViewHolder cellViewHolder = (CellViewHolder) viewHolder;
-                    if (position == 1)
-                        cellViewHolder.enlarged = false;
-                    else
-                        cellViewHolder.enlarged = true;
-                    cellViewHolder.newPosition(position);
-
-                    cellViewHolder.onBind();
-                }
-            }
-
-            @Override
-            public int getItemCount() {
-                return LineViewHolder.this.adapter.getCellsCount(LineViewHolder.this.row);
-            }
-        });
+        }));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {

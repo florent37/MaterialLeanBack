@@ -11,6 +11,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.florent37.materialleanback.line.LineAdapter;
+import com.github.florent37.materialleanback.line.LineViewHolder;
 import com.nineoldandroids.view.ViewHelper;
 
 /**
@@ -62,57 +64,38 @@ public class MaterialLeanBack extends FrameLayout {
 
         recyclerView = (RecyclerView) findViewById(R.id.mlb_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new RecyclerView.Adapter() {
-
-            @Override
-            public int getItemViewType(int position) {
-                if (position == 0)
-                    return 0;
-                else if (position == getItemCount() - 1)
-                    return 1;
-                else
-                    return 2;
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int type) {
-                View view;
-                switch (type) {
-                    case 0:
-                        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
-                        return new PlaceHolderViewHolder(view, false, settings.paddingTop);
-                    case 1:
-                        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_placeholder, viewGroup, false);
-                        return new PlaceHolderViewHolder(view, false, settings.paddingBottom);
-                    default:
-                        view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_row, viewGroup, false);
-                        return new LineViewHolder(view, adapter, settings, customizer);
-                }
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int row) {
-                if(viewHolder instanceof LineViewHolder)
-                    ((LineViewHolder)viewHolder).onBind(row);
-            }
-
-            @Override
-            public int getItemCount() {
-                return adapter.getLineCount();
-            }
-        });
     }
 
-    public interface Adapter<VH extends MaterialLeanBack.ViewHolder> {
-        int getLineCount();
+    public static abstract class Adapter<VH extends MaterialLeanBack.ViewHolder> {
+        public int getLineCount() {
+            return 0;
+        }
 
-        int getCellsCount(int row);
+        public int getCellsCount(int row) {
+            return 0;
+        }
 
-        VH onCreateViewHolder(ViewGroup viewGroup, int row);
+        public VH onCreateViewHolder(ViewGroup viewGroup, int row) {
+            return null;
+        }
 
-        void onBindViewHolder(VH viewHolder, int i);
+        public void onBindViewHolder(VH viewHolder, int i) {
+        }
 
-        String getTitleForRow(int row);
+        public String getTitleForRow(int row) {
+            return null;
+        }
+
+        public boolean isCustomView(int row) {
+            return false;
+        }
+
+        //if you want to set a custom view into the MaterialLeanBack, eg: a header
+        public RecyclerView.ViewHolder getCustomViewForRow(ViewGroup viewGroup, int row) {
+            return null;
+        }
+
+        public void onBindCustomView(RecyclerView.ViewHolder viewHolder, int row) {}
     }
 
     public Adapter getAdapter() {
@@ -121,6 +104,7 @@ public class MaterialLeanBack extends FrameLayout {
 
     public void setAdapter(Adapter adapter) {
         this.adapter = adapter;
+        recyclerView.setAdapter(new LineAdapter(settings,adapter,customizer));
     }
 
     public static class ViewHolder {

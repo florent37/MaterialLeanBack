@@ -1,9 +1,12 @@
-package com.github.florent37.materialleanback;
+package com.github.florent37.materialleanback.cell;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.github.florent37.materialleanback.MaterialLeanBack;
+import com.github.florent37.materialleanback.MaterialLeanBackSettings;
+import com.github.florent37.materialleanback.R;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorListenerAdapter;
 import com.nineoldandroids.animation.AnimatorSet;
@@ -26,7 +29,7 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
     protected final MaterialLeanBack.Adapter adapter;
     protected final MaterialLeanBack.ViewHolder viewHolder;
     protected final MaterialLeanBackSettings settings;
-    protected final int row;
+    public final int row;
 
     Animator currentAnimator;
 
@@ -124,5 +127,13 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
         int cell = getAdapterPosition()-1;
         viewHolder.cell = cell;
         adapter.onBindViewHolder(viewHolder,cell);
+    }
+
+    public boolean isEnlarged() {
+        return enlarged;
+    }
+
+    public void setEnlarged(boolean enlarged) {
+        this.enlarged = enlarged;
     }
 }
