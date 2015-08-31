@@ -2,10 +2,13 @@ package com.github.florent37.materialleanback.sample;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -18,8 +21,11 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
     MaterialLeanBack materialLeanBack;
+
+    Toolbar toolbar;
+    DrawerLayout mDrawer;
+    ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, 0, 0);
+        mDrawer.setDrawerListener(mDrawerToggle);
 
         materialLeanBack = (MaterialLeanBack) findViewById(R.id.materialLeanBack);
 
@@ -100,5 +110,17 @@ public class MainActivity extends AppCompatActivity {
             //endregion
 
         });
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return mDrawerToggle.onOptionsItemSelected(item) ||
+                super.onOptionsItemSelected(item);
     }
 }

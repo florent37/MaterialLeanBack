@@ -1,32 +1,40 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/primary"
-        android:elevation="10dp" />
-
-    <com.github.florent37.materialleanback.MaterialLeanBack
-        android:id="@+id/materialLeanBack"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        app:mlb_animateCards="true"
-        app:mlb_background="@color/background"
-        app:mlb_lineSpacing="30dp"
-        app:mlb_overlapCards="true"
-        app:mlb_paddingBottom="30dp"
-        app:mlb_paddingLeft="30dp"
-        app:mlb_paddingRight="30dp"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:elevation="10dp" />
 
-        app:mlb_paddingTop="40dp"
-        app:mlb_titleColor="@android:color/white" />
+        <com.github.florent37.materialleanback.MaterialLeanBack
+            android:id="@+id/materialLeanBack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-</LinearLayout>
+            app:mlb_animateCards="true"
+            app:mlb_background="@color/background"
+            app:mlb_lineSpacing="30dp"
+            app:mlb_overlapCards="true"
+            app:mlb_paddingBottom="30dp"
+            app:mlb_paddingLeft="30dp"
+            app:mlb_paddingRight="30dp"
+            app:mlb_paddingTop="40dp"
+
+            app:mlb_titleColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <include layout="@layout/drawer" />
+
+</android.support.v4.widget.DrawerLayout>
 
