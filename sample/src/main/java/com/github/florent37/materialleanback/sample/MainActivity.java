@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 textView.setTypeface(null, Typeface.BOLD);
             }
         });
+
         //Picasso.with(getApplicationContext())
         //        .load("http://www.journaldugeek.com/wp-content/blogs.dir/1/files/2015/01/game-of-thrones-saison-5-documentaire.jpg")
         //        .fit().centerCrop()
@@ -75,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 return "Line " + row;
             }
 
-
+            //region customView
             @Override
             public RecyclerView.ViewHolder getCustomViewForRow(ViewGroup viewgroup, int row) {
-                if (row == 0) {
+                if (row == 3) {
                     View view = LayoutInflater.from(viewgroup.getContext()).inflate(R.layout.header, viewgroup, false);
                     return new RecyclerView.ViewHolder(view) {
                     };
@@ -88,13 +89,16 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean isCustomView(int row) {
-                return row == 0;
+                return row == 3;
             }
 
             @Override
             public void onBindCustomView(RecyclerView.ViewHolder viewHolder, int row) {
                 super.onBindCustomView(viewHolder, row);
             }
+
+            //endregion
+
         });
     }
 }

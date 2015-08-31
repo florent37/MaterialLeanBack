@@ -46,9 +46,6 @@ public class MaterialLeanBack extends FrameLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        if(isInEditMode())
-            return;
-
         addView(LayoutInflater.from(getContext()).inflate(R.layout.mlb_layout, this, false));
 
         imageBackground = (ImageView) findViewById(R.id.mlb_imageBackground);

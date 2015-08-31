@@ -5,21 +5,39 @@
     android:background="#333"
     >
 
+
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
+        android:src="@drawable/montain"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@drawable/shadow_down"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/shadow_up"
         />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#5000"
         android:textColor="@android:color/white"
         android:gravity="center"
+        android:textSize="22sp"
         android:layout_gravity="bottom"
-        android:text="header" />
+        android:text="This is a custom view" />
+
+
 
 </FrameLayout>
