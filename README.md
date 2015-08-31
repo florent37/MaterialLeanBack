@@ -10,7 +10,7 @@ A different beautiful Floating Edit Text
   <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
 </a>
 
-[![gif](https://raw.githubusercontent.com/florent37/MaterialLeanBack/master/screens/sample_2.gif)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
+[![gif](https://j.gifs.com/KrGQ0X.gif)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
 
 #Usage
 
