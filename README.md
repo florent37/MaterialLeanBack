@@ -2,9 +2,9 @@
 
 A different beautiful Floating Edit Text
 
-[![screen](https://raw.githubusercontent.com/florent37/MaterialLeanBack/master/screens/sample_small.png)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
+[![screen](https://raw.githubusercontent.com/florent37/MaterialLeanBack/master/screens/sample_700.png)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
 
-[![screen](http://i.giphy.com/xTiTnBEOkryShwKxiM.gif)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
+[![gif](http://i.giphy.com/xTiTnBEOkryShwKxiM.gif)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
 
 <a href="https://play.google.com/store/apps/details?id=com.github.florent37.materialtextfield.sample">
   <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
