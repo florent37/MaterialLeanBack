@@ -2,7 +2,7 @@
 
 A different beautiful Floating Edit Text
 
-[![screen](https://raw.githubusercontent.com/florent37/MaterialLeanBack/master/screens/sample_700.png)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
+[![screen](https://raw.githubusercontent.com/florent37/MaterialLeanBack/master/screens/sample_small.png)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
 
 [![gif](http://i.giphy.com/xTiTnBEOkryShwKxiM.gif)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
 
