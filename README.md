@@ -1,6 +1,6 @@
 # MaterialLeanBack
 
-A different beautiful Floating Edit Text
+A beautiful leanback port for Smartphones and Tablets
 
 [![screen](https://raw.githubusercontent.com/florent37/MaterialLeanBack/master/screens/sample_small.png)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
 
