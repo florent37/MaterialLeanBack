@@ -6,7 +6,7 @@ A beautiful leanback port for Smartphones and Tablets
 
 #Sample
 
-<a href="https://play.google.com/store/apps/details?id=com.github.florent37.materialtextfield.sample">
+<a href="https://play.google.com/store/apps/details?id=com.github.florent37.materialleanback.sample">
   <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
 </a>
 
