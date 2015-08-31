@@ -64,7 +64,8 @@ materialLeanBack.setAdapter(new MaterialLeanBack.Adapter<TestViewHolder>() {
                 return "Line " + row;
             }
 
-        });```
+        });
+```
 
 #Available attributes
 
