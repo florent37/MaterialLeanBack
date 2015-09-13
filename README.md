@@ -137,6 +137,12 @@ compile 'com.android.support:recyclerview-v7:22.2.1'
 compile 'com.nineoldandroids:library:2.4.0'
 ```
 
+#CHANGELOG
+
+##1.0.1
+- fixed the line and cell count
+
+
 #Credits
 
 Author: Florent Champigny [http://www.florentchampigny.com/](http://www.florentchampigny.com/)

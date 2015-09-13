@@ -17,6 +17,8 @@ import com.github.florent37.materialleanback.R;
 public class LineAdapter extends RecyclerView.Adapter {
 
     public static final int PLACEHOLDER_START = -2000;
+    public static final int PLACEHOLDER_START_SIZE = 1;
+    public static final int PLACEHOLDER_END_SIZE = 1;
     public static final int PLACEHOLDER_END = -2001;
     public static final int CELL = -2002;
 
@@ -66,14 +68,14 @@ public class LineAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int row) {
         if (viewHolder instanceof LineViewHolder)
-            ((LineViewHolder) viewHolder).onBind(row);
-        else if(adapter != null && adapter.isCustomView(row-1))
-            adapter.onBindCustomView(viewHolder,row-1);
+            ((LineViewHolder) viewHolder).onBind(row-PLACEHOLDER_START_SIZE);
+        else if(adapter != null && adapter.isCustomView(row-PLACEHOLDER_START_SIZE))
+            adapter.onBindCustomView(viewHolder,row-PLACEHOLDER_START_SIZE);
 
     }
 
     @Override
     public int getItemCount() {
-        return adapter.getLineCount();
+        return adapter.getLineCount()+PLACEHOLDER_START_SIZE+PLACEHOLDER_END_SIZE;
     }
 }

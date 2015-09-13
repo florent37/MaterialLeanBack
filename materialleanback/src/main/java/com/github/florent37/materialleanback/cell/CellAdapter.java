@@ -18,6 +18,8 @@ public class CellAdapter extends RecyclerView.Adapter {
 
     public static final int PLACEHOLDER_START = 3000;
     public static final int PLACEHOLDER_END = 3001;
+    public static final int PLACEHOLDER_START_SIZE = 1;
+    public static final int PLACEHOLDER_END_SIZE = 1;
     public static final int CELL = 3002;
 
     final protected int row;
@@ -83,7 +85,7 @@ public class CellAdapter extends RecyclerView.Adapter {
                 cellViewHolder.setEnlarged(false);
             else
                 cellViewHolder.setEnlarged(true);
-            cellViewHolder.newPosition(position);
+            cellViewHolder.newPosition(position-PLACEHOLDER_START_SIZE);
 
             cellViewHolder.onBind();
         }
@@ -91,6 +93,6 @@ public class CellAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return this.adapter.getCellsCount(this.row);
+        return this.adapter.getCellsCount(this.row)+PLACEHOLDER_START_SIZE+PLACEHOLDER_END_SIZE;
     }
 }
