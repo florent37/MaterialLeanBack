@@ -2,6 +2,8 @@ package com.github.florent37.materialleanback.sample;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean hasRowTitle(int row) {
-                return row != 2;
+                return row != 6;
             }
 
 
@@ -121,14 +123,22 @@ public class MainActivity extends AppCompatActivity {
         materialLeanBack.setOnItemClickListener(new MaterialLeanBack.OnItemClickListener() {
             @Override
             public void onTitleClicked(int row, String text) {
-                Toast.makeText(getApplicationContext(), "onTitleClicked "+row+" "+text, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "onTitleClicked " + row + " " + text, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onItemClicked(int row, int column) {
-                Toast.makeText(getApplicationContext(), "onItemClicked "+row+" "+column, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "onItemClicked " + row + " " + column, Toast.LENGTH_SHORT).show();
             }
         });
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                materialLeanBack.smoothScrollTo(5, 6);
+            }
+        });
+
     }
 
     @Override

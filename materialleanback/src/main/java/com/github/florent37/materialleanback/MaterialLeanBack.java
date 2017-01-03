@@ -1,6 +1,8 @@
 package com.github.florent37.materialleanback;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.florent37.materialleanback.line.LineAdapter;
+import com.github.florent37.materialleanback.line.LineViewHolder;
 import com.nineoldandroids.view.ViewHelper;
 
 /**
@@ -88,6 +91,23 @@ public class MaterialLeanBack extends FrameLayout {
 
     public ImageView getImageBackground() {
         return imageBackground;
+    }
+
+    public void smoothScrollTo(int row, int column) {
+            final int rowToGo = row + LineAdapter.PLACEHOLDER_START_SIZE;
+        final int columnToGo = column + LineAdapter.PLACEHOLDER_START_SIZE;
+
+        recyclerView.smoothScrollToPosition(rowToGo);
+        recyclerView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                final RecyclerView.ViewHolder childViewHolder = recyclerView.findViewHolderForLayoutPosition(rowToGo);
+                if (childViewHolder instanceof LineViewHolder) {
+                    LineViewHolder lineViewHolder = (LineViewHolder) childViewHolder;
+                    lineViewHolder.getRecyclerView().smoothScrollToPosition(columnToGo);
+                }
+            }
+        }, 2000);
     }
 
     public interface Customizer {
