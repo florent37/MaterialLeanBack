@@ -3,18 +3,16 @@ package com.github.florent37.materialleanback.line;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-import com.github.florent37.materialleanback.cell.CellAdapter;
-import com.github.florent37.materialleanback.cell.CellViewHolder;
 import com.github.florent37.materialleanback.MaterialLeanBack;
 import com.github.florent37.materialleanback.MaterialLeanBackSettings;
-import com.github.florent37.materialleanback.PlaceHolderViewHolder;
+import com.github.florent37.materialleanback.OnItemClickListenerWrapper;
 import com.github.florent37.materialleanback.R;
+import com.github.florent37.materialleanback.cell.CellAdapter;
+import com.github.florent37.materialleanback.cell.CellViewHolder;
 
 /**
  * Created by florentchampigny on 28/08/15.
@@ -29,14 +27,17 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
     protected ViewGroup layout;
     protected TextView title;
 
+    protected OnItemClickListenerWrapper onItemClickListenerWrapper;
+
     protected int row;
     protected boolean wrapped = false;
 
-    public LineViewHolder(View itemView, @NonNull MaterialLeanBack.Adapter adapter, @NonNull MaterialLeanBackSettings settings, final MaterialLeanBack.Customizer customizer) {
+    public LineViewHolder(View itemView, @NonNull MaterialLeanBack.Adapter adapter, @NonNull MaterialLeanBackSettings settings, final MaterialLeanBack.Customizer customizer, final OnItemClickListenerWrapper onItemClickListenerWrapper) {
         super(itemView);
         this.adapter = adapter;
         this.settings = settings;
         this.customizer = customizer;
+        this.onItemClickListenerWrapper = onItemClickListenerWrapper;
 
         layout = (ViewGroup) itemView.findViewById(R.id.row_layout);
         title = (TextView) itemView.findViewById(R.id.row_title);
@@ -50,15 +51,27 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
         return recyclerView;
     }
 
-    public void onBind(int row) {
+    public void onBind(final int row) {
         this.row = row;
 
         {
-            String titleString = adapter.getTitleForRow(this.row);
-            if (titleString == null || titleString.trim().isEmpty())
+            final String titleString = adapter.getTitleForRow(this.row);
+            if (!adapter.hasRowTitle(row) || (titleString == null || titleString.trim().isEmpty()))
                 title.setVisibility(View.GONE);
             else
                 title.setText(titleString);
+
+            title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onItemClickListenerWrapper != null) {
+                        final MaterialLeanBack.OnItemClickListener onItemClickListener = onItemClickListenerWrapper.getOnItemClickListener();
+                        if (onItemClickListener != null) {
+                            onItemClickListener.onTitleClicked(row, titleString);
+                        }
+                    }
+                }
+            });
 
             if (settings.titleColor != null)
                 title.setTextColor(settings.titleColor);
@@ -79,10 +92,10 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
             }
         }
 
-        recyclerView.setAdapter(new CellAdapter(row, adapter, settings, new CellAdapter.HeightCalculatedCallback() {
+        recyclerView.setAdapter(new CellAdapter(row, adapter, settings, onItemClickListenerWrapper, new CellAdapter.HeightCalculatedCallback() {
             @Override
             public void onHeightCalculated(int height) {
-                if(!wrapped) {
+                if (!wrapped) {
                     recyclerView.getLayoutParams().height = height;
                     recyclerView.requestLayout();
                     wrapped = true;

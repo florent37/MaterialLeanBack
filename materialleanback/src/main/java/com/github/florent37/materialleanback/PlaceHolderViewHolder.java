@@ -13,7 +13,7 @@ public class PlaceHolderViewHolder extends RecyclerView.ViewHolder {
 
         if(horizontal) {
             if (dimen != -1) {
-                itemView.getLayoutParams().width = dimen;
+                //itemView.getLayoutParams().width = dimen;
                 itemView.requestLayout();
             }
         }else{

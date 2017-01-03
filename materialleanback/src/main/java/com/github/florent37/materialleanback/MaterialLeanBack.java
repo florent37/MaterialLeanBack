@@ -1,6 +1,7 @@
 package com.github.florent37.materialleanback;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -12,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.florent37.materialleanback.line.LineAdapter;
-import com.github.florent37.materialleanback.line.LineViewHolder;
 import com.nineoldandroids.view.ViewHelper;
 
 /**
@@ -20,13 +20,15 @@ import com.nineoldandroids.view.ViewHelper;
  */
 public class MaterialLeanBack extends FrameLayout {
 
-    RecyclerView recyclerView;
-    ImageView imageBackground;
-    View imageBackgroundOverlay;
+    private RecyclerView recyclerView;
+    private ImageView imageBackground;
+    private View imageBackgroundOverlay;
 
-    MaterialLeanBack.Adapter adapter;
-    MaterialLeanBack.Customizer customizer;
-    MaterialLeanBackSettings settings = new MaterialLeanBackSettings();
+    private MaterialLeanBack.Adapter adapter;
+    private MaterialLeanBack.Customizer customizer;
+    private MaterialLeanBackSettings settings = new MaterialLeanBackSettings();
+
+    private OnItemClickListenerWrapper onItemClickListenerWrapper = new OnItemClickListenerWrapper();
 
     public MaterialLeanBack(Context context) {
         super(context);
@@ -52,15 +54,50 @@ public class MaterialLeanBack extends FrameLayout {
         imageBackgroundOverlay = findViewById(R.id.mlb_imageBackgroundOverlay);
 
         if (settings.backgroundId != null)
-            imageBackground.setBackgroundDrawable(getContext().getResources().getDrawable(settings.backgroundId));
+            imageBackground.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), settings.backgroundId));
 
         if (settings.backgroundOverlay != null)
-            ViewHelper.setAlpha(imageBackgroundOverlay,settings.backgroundOverlay);
+            ViewHelper.setAlpha(imageBackgroundOverlay, settings.backgroundOverlay);
         if (settings.backgroundOverlayColor != null)
             imageBackgroundOverlay.setBackgroundColor(settings.backgroundOverlayColor);
 
         recyclerView = (RecyclerView) findViewById(R.id.mlb_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    public Adapter getAdapter() {
+        return adapter;
+    }
+
+    public void setAdapter(Adapter adapter) {
+        this.adapter = adapter;
+        recyclerView.setAdapter(new LineAdapter(settings, adapter, customizer, onItemClickListenerWrapper));
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListenerWrapper.setOnItemClickListener(onItemClickListener);
+    }
+
+    public Customizer getCustomizer() {
+        return customizer;
+    }
+
+    public void setCustomizer(Customizer customizer) {
+        this.customizer = customizer;
+    }
+
+    public ImageView getImageBackground() {
+        return imageBackground;
+    }
+
+    public interface Customizer {
+        void customizeTitle(TextView textView);
+    }
+
+    public interface OnItemClickListener {
+        void onTitleClicked(int row, String text);
+
+        void onItemClicked(int row, int column);
     }
 
     public static abstract class Adapter<VH extends MaterialLeanBack.ViewHolder> {
@@ -83,6 +120,10 @@ public class MaterialLeanBack extends FrameLayout {
             return null;
         }
 
+        public boolean hasRowTitle(int row) {
+            return true;
+        }
+
         public boolean isCustomView(int row) {
             return false;
         }
@@ -92,16 +133,8 @@ public class MaterialLeanBack extends FrameLayout {
             return null;
         }
 
-        public void onBindCustomView(RecyclerView.ViewHolder viewHolder, int row) {}
-    }
-
-    public Adapter getAdapter() {
-        return adapter;
-    }
-
-    public void setAdapter(Adapter adapter) {
-        this.adapter = adapter;
-        recyclerView.setAdapter(new LineAdapter(settings,adapter,customizer));
+        public void onBindCustomView(RecyclerView.ViewHolder viewHolder, int row) {
+        }
     }
 
     public static class ViewHolder {
@@ -114,21 +147,5 @@ public class MaterialLeanBack extends FrameLayout {
             this.itemView = itemView;
         }
 
-    }
-
-    public interface Customizer {
-        void customizeTitle(TextView textView);
-    }
-
-    public Customizer getCustomizer() {
-        return customizer;
-    }
-
-    public void setCustomizer(Customizer customizer) {
-        this.customizer = customizer;
-    }
-
-    public ImageView getImageBackground() {
-        return imageBackground;
     }
 }

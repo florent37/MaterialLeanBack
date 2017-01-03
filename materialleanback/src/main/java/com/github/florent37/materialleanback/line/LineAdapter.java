@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.github.florent37.materialleanback.MaterialLeanBack;
 import com.github.florent37.materialleanback.MaterialLeanBackSettings;
+import com.github.florent37.materialleanback.OnItemClickListenerWrapper;
 import com.github.florent37.materialleanback.PlaceHolderViewHolder;
 import com.github.florent37.materialleanback.R;
 
@@ -22,14 +23,16 @@ public class LineAdapter extends RecyclerView.Adapter {
     public static final int PLACEHOLDER_END = -2001;
     public static final int CELL = -2002;
 
-    protected MaterialLeanBackSettings settings;
-    protected MaterialLeanBack.Adapter adapter;
-    protected MaterialLeanBack.Customizer customizer;
+    protected final OnItemClickListenerWrapper onItemClickListenerWrapper;
+    protected final MaterialLeanBackSettings settings;
+    protected final MaterialLeanBack.Adapter adapter;
+    protected final MaterialLeanBack.Customizer customizer;
 
-    public LineAdapter(@NonNull MaterialLeanBackSettings settings, @NonNull MaterialLeanBack.Adapter adapter, MaterialLeanBack.Customizer customizer) {
+    public LineAdapter(@NonNull MaterialLeanBackSettings settings, @NonNull MaterialLeanBack.Adapter adapter, MaterialLeanBack.Customizer customizer, OnItemClickListenerWrapper onItemClickListenerWrapper) {
         this.settings = settings;
         this.adapter = adapter;
         this.customizer = customizer;
+        this.onItemClickListenerWrapper = onItemClickListenerWrapper;
     }
 
     @Override
@@ -39,7 +42,7 @@ public class LineAdapter extends RecyclerView.Adapter {
         else if (position == getItemCount() - 1)
             return PLACEHOLDER_END;
         else if (adapter != null && adapter.isCustomView(position - 1))
-            return position-1;
+            return position - 1;
         else
             return CELL;
     }
@@ -56,10 +59,10 @@ public class LineAdapter extends RecyclerView.Adapter {
                 return new PlaceHolderViewHolder(view, false, settings.paddingBottom);
             case CELL:
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mlb_row, viewGroup, false);
-                return new LineViewHolder(view, adapter, settings, customizer);
+                return new LineViewHolder(view, adapter, settings, customizer, onItemClickListenerWrapper);
             default:
-                if(adapter != null && adapter.isCustomView(type)){
-                    return adapter.getCustomViewForRow(viewGroup,type);
+                if (adapter != null && adapter.isCustomView(type)) {
+                    return adapter.getCustomViewForRow(viewGroup, type);
                 }
         }
         return null;
@@ -68,14 +71,14 @@ public class LineAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int row) {
         if (viewHolder instanceof LineViewHolder)
-            ((LineViewHolder) viewHolder).onBind(row-PLACEHOLDER_START_SIZE);
-        else if(adapter != null && adapter.isCustomView(row-PLACEHOLDER_START_SIZE))
-            adapter.onBindCustomView(viewHolder,row-PLACEHOLDER_START_SIZE);
+            ((LineViewHolder) viewHolder).onBind(row - PLACEHOLDER_START_SIZE);
+        else if (adapter != null && adapter.isCustomView(row - PLACEHOLDER_START_SIZE))
+            adapter.onBindCustomView(viewHolder, row - PLACEHOLDER_START_SIZE);
 
     }
 
     @Override
     public int getItemCount() {
-        return adapter.getLineCount()+PLACEHOLDER_START_SIZE+PLACEHOLDER_END_SIZE;
+        return adapter.getLineCount() + PLACEHOLDER_START_SIZE + PLACEHOLDER_END_SIZE;
     }
 }

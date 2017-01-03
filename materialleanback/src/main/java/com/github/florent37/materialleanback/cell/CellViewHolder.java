@@ -31,7 +31,7 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
     protected final MaterialLeanBackSettings settings;
     public final int row;
 
-    Animator currentAnimator;
+    protected Animator currentAnimator;
 
     public CellViewHolder(View itemView, int row, MaterialLeanBack.Adapter adapter, MaterialLeanBackSettings settings) {
         super(itemView);
@@ -40,7 +40,7 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
         this.settings = settings;
 
         cardView = (CardView) itemView.findViewById(R.id.cardView);
-        this.viewHolder = adapter.onCreateViewHolder(cardView,row);
+        this.viewHolder = adapter.onCreateViewHolder(cardView, row);
         this.viewHolder.row = row;
         cardView.addView(viewHolder.itemView);
     }
@@ -48,12 +48,12 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
     public void enlarge(boolean withAnimation) {
         if (!enlarged && settings.animateCards) {
 
-            if(currentAnimator != null) {
+            if (currentAnimator != null) {
                 currentAnimator.cancel();
                 currentAnimator = null;
             }
 
-            int duration = withAnimation? 300 : 0;
+            int duration = withAnimation ? 300 : 0;
 
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(duration);
@@ -62,7 +62,7 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
             animatorList.add(ObjectAnimator.ofFloat(cardView, "scaleX", scaleEnlarged));
             animatorList.add(ObjectAnimator.ofFloat(cardView, "scaleY", scaleEnlarged));
 
-            if(settings.overlapCards) {
+            if (settings.overlapCards) {
                 //animatorList.add(ObjectAnimator.ofFloat(cardView, "translationX", translationX));
                 animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -83,21 +83,21 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
 
     public void reduce(boolean withAnimation) {
         if (enlarged && settings.animateCards) {
-            if(currentAnimator != null) {
+            if (currentAnimator != null) {
                 currentAnimator.cancel();
                 currentAnimator = null;
             }
 
-            int duration = withAnimation? 300 : 0;
+            int duration = withAnimation ? 300 : 0;
 
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(duration);
 
             List<Animator> animatorList = new ArrayList<>();
-            animatorList.add(ObjectAnimator.ofFloat(cardView,"scaleX",scaleReduced));
-            animatorList.add(ObjectAnimator.ofFloat(cardView,"scaleY",scaleReduced));
+            animatorList.add(ObjectAnimator.ofFloat(cardView, "scaleX", scaleReduced));
+            animatorList.add(ObjectAnimator.ofFloat(cardView, "scaleY", scaleReduced));
 
-            if(settings.overlapCards) {
+            if (settings.overlapCards) {
                 //animatorList.add(ObjectAnimator.ofFloat(cardView, "translationX", translationX));
                 animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -124,9 +124,9 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void onBind() {
-        int cell = getAdapterPosition()-CellAdapter.PLACEHOLDER_START_SIZE;
+        int cell = getAdapterPosition() - CellAdapter.PLACEHOLDER_START_SIZE;
         viewHolder.cell = cell;
-        adapter.onBindViewHolder(viewHolder,cell);
+        adapter.onBindViewHolder(viewHolder, cell);
     }
 
     public boolean isEnlarged() {

@@ -1,6 +1,7 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="mlb_placeholder_horizontal">30dp</dimen>
+    <dimen name="mlb_placeholder_horizontal_end">200dp</dimen>
     <dimen name="mlb_placeholder_vertical">20dp</dimen>
 
     <dimen name="mlb_lineSpacingTop">5dp</dimen>

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.github.florent37.materialleanback.MaterialLeanBack;
@@ -86,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
                 return "Line " + row;
             }
 
+            @Override
+            public boolean hasRowTitle(int row) {
+                return row != 2;
+            }
+
+
             //region customView
             @Override
             public RecyclerView.ViewHolder getCustomViewForRow(ViewGroup viewgroup, int row) {
@@ -109,6 +116,18 @@ public class MainActivity extends AppCompatActivity {
 
             //endregion
 
+        });
+
+        materialLeanBack.setOnItemClickListener(new MaterialLeanBack.OnItemClickListener() {
+            @Override
+            public void onTitleClicked(int row, String text) {
+                Toast.makeText(getApplicationContext(), "onTitleClicked "+row+" "+text, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onItemClicked(int row, int column) {
+                Toast.makeText(getApplicationContext(), "onItemClicked "+row+" "+column, Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
