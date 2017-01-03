@@ -130,17 +130,12 @@ materialLeanBack.setAdapter(new MaterialLeanBack.Adapter<TestViewHolder>() {
 
 In your module [![Download](https://api.bintray.com/packages/florent37/maven/MaterialLeanBack/images/download.svg)](https://bintray.com/florent37/maven/MaterialLeanBack/_latestVersion)
 ```groovy
-compile 'com.github.florent37:materialleanback:1.0.0@aar'
+compile 'com.github.florent37:materialleanback:1.0.2'
 
 compile 'com.android.support:cardview-v7:22.2.1'
 compile 'com.android.support:recyclerview-v7:22.2.1'
 compile 'com.nineoldandroids:library:2.4.0'
 ```
-
-#CHANGELOG
-
-##1.0.1
-- fixed the line and cell count
 
 
 #Credits
