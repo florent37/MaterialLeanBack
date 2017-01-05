@@ -55,6 +55,8 @@ public class CellViewHolder extends RecyclerView.ViewHolder {
 
             int duration = withAnimation ? 300 : 0;
 
+            adapter.itemPosition = getAdapterPosition();
+
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(duration);
 

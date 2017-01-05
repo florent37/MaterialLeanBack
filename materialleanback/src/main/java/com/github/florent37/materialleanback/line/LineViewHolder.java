@@ -105,6 +105,10 @@ public class LineViewHolder extends RecyclerView.ViewHolder {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    adapter.getEnlargedItemPosition(adapter.itemPosition);
+                }
                 super.onScrollStateChanged(recyclerView, newState);
             }
 
