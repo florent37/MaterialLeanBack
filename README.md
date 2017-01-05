@@ -65,6 +65,14 @@ materialLeanBack.setAdapter(new MaterialLeanBack.Adapter<TestViewHolder>() {
             public String getTitleForRow(int row) {
                 return "Line " + row;
             }
+            
+            @Override
+            public int getEnlargedItemPosition(int position) {
+
+                Toast.makeText(MainActivity.this,String.valueOf(position),Toast.LENGTH_LONG).show();
+
+                return super.getEnlargedItemPosition(position);
+            }
 
         });
 ```
