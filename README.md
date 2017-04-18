@@ -4,7 +4,7 @@ A beautiful leanback port for Smartphones and Tablets
 
 [![screen](https://raw.githubusercontent.com/florent37/MaterialLeanBack/master/screens/sample_small.png)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
 
-#Sample
+# Sample
 
 <a href="https://play.google.com/store/apps/details?id=com.github.florent37.materialleanback.sample">
   <img alt="Android app on Google Play" src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" />
@@ -12,7 +12,7 @@ A beautiful leanback port for Smartphones and Tablets
 
 [![gif](https://raw.githubusercontent.com/florent37/MaterialLeanBack/master/screens/sample_2.gif)](https://www.youtube.com/watch?v=iZzPR0gsWhE&feature)
 
-#Usage
+# Usage
 
 In your layout
 
@@ -69,7 +69,7 @@ materialLeanBack.setAdapter(new MaterialLeanBack.Adapter<TestViewHolder>() {
         });
 ```
 
-#Available attributes
+# Available attributes
 
 ```xml
 <com.github.florent37.materialleanback.MaterialLeanBack
@@ -98,7 +98,7 @@ materialLeanBack.setAdapter(new MaterialLeanBack.Adapter<TestViewHolder>() {
         />
 ```
 
-#Add custom views
+# Add custom views
 
 ```java
 materialLeanBack.setAdapter(new MaterialLeanBack.Adapter<TestViewHolder>() {
@@ -126,7 +126,7 @@ materialLeanBack.setAdapter(new MaterialLeanBack.Adapter<TestViewHolder>() {
 }
 ```
 
-#Download
+# Download
 
 In your module [![Download](https://api.bintray.com/packages/florent37/maven/MaterialLeanBack/images/download.svg)](https://bintray.com/florent37/maven/MaterialLeanBack/_latestVersion)
 ```groovy
@@ -138,7 +138,7 @@ compile 'com.nineoldandroids:library:2.4.0'
 ```
 
 
-#Credits
+# Credits
 
 Author: Florent Champigny [http://www.florentchampigny.com/](http://www.florentchampigny.com/)
 
