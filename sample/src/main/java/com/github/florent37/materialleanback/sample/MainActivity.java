@@ -116,6 +116,14 @@ public class MainActivity extends AppCompatActivity {
                 super.onBindCustomView(viewHolder, row);
             }
 
+            @Override
+            public int getEnlargedItemPosition(int position) {
+
+                Toast.makeText(MainActivity.this,String.valueOf(position),Toast.LENGTH_LONG).show();
+
+                return super.getEnlargedItemPosition(position);
+            }
+
             //endregion
 
         });

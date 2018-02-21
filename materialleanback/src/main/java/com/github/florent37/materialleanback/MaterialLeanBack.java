@@ -121,6 +121,9 @@ public class MaterialLeanBack extends FrameLayout {
     }
 
     public static abstract class Adapter<VH extends MaterialLeanBack.ViewHolder> {
+
+        public int itemPosition=0;
+
         public int getLineCount() {
             return 0;
         }
@@ -154,6 +157,10 @@ public class MaterialLeanBack extends FrameLayout {
         }
 
         public void onBindCustomView(RecyclerView.ViewHolder viewHolder, int row) {
+        }
+
+        public int getEnlargedItemPosition(int position){
+            return position;
         }
     }
 
